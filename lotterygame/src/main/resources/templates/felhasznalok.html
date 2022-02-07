@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="hu"
+      xmlns:th="http://www.thymleaf.org"
+      xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Lottó program</title>
+</head>
+<body>
+    <h2>Felhasználói adatok</h2>
+
+    <div>
+        <article th:each="user : ${users}">
+            <label>Vezetéknév: </label><p th:text="${user.firstName}"></p>
+            <label>Keresztnév: </label><p th:text="${user.lastName}"></p>
+            <label>Neme: </label><p th:text="${user.gender}"></p>
+            <label>Telefonszáma: </label><p th:text="${user.phone}"></p>
+            <label>E-mail-címe: </label><p th:text="${user.email}"></p>
+            <label>Járműve: </label><p th:text="${user.vehicle}"></p>
+            <hr />
+        </article>
+    </div>
+
+    <p><a href="main.html">Vissza a főoldalra</a></p>
+</body>
+</html>

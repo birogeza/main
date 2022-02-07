@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="hu"
+      xmlns:th="http://www.thymleaf.org"
+      xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Lottó program</title>
+</head>
+<body>
+    <h2>Regisztráció</h2>
+    <form name="user_reg" th:action="@{/reg}" th:object="${user}" method="post">
+        <table>
+            <tr><td><label>Felhasználónév: </label></td><td><input name="userName" id="userName" type="text" th:field="*{userName}" /></td></tr>
+
+            <tr><td><label>Jelszó: </label></td><td><input name="password" id="password" type="password" th:field="*{password}" /></td></tr>
+
+            <tr><td><label>Vezetéknév: </label></td><td><input name="lastName" id="lastName" type="text" th:field="*{firstName}" /></td></tr>
+
+            <tr><td><label>Keresztnév: </label></td><td><input name="firstName" id="firstName" type="text" th:field="*{lastName}" /></td></tr>
+
+            <tr><td><label>Neme: </label></td><td>
+            <input type="radio" id="male" name="gender" value="Férfi" th:field="*{gender}" />
+            <label for="male">Férfi</label><br>
+            <input type="radio" id="female" name="gender" value="Nő" th:field="*{gender}" />
+            <label for="female">Nő</label><br>
+            <input type="radio" id="other" name="gender" value="Más" th:field="*{gender}" />
+            <label for="other">Egyéb</label></td></tr>
+
+            <tr><td><label>E-mail-cím: </label></td><td><input name="email" id="email" type="email" th:field="*{email}" /></td></tr>
+
+            <tr></tr><td><label>Telefonszám: </label></td><td><input name="phone" id="phone" type="phone" th:field="*{phone}" /></td></tr>
+
+            <tr><td><label>Jármű: </label></td><td>
+            <input type="checkbox" id="bike" name="vehicle" value="Bicikli" th:field="*{vehicle}" />
+            <label for="bike"> Biciklim van</label><br>
+            <input type="checkbox" id="car" name="vehicle" value="Autó" th:field="*{vehicle}" />
+            <label for="car"> Autóm van</label><br>
+            <input type="checkbox" id="boat" name="vehicle" value="Hajó" th:field="*{vehicle}" />
+            <label for="boat"> Hajóm van</label><br></td></tr>
+
+            <tr><td colspan="2"><input type="submit" name="submit" value="Küldés" /></td></tr>
+        </table>
+    </form>
+
+    <p><a href="index.html">Vissza a főoldalra</a></p>
+</body>
+</html>

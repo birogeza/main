@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="hu"
+      xmlns:th="http://www.thymleaf.org"
+      xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Lottó program</title>
+</head>
+<body>
+    <h2 th:text="${userName}">Eddigi húzások</h2>
+
+    <div>
+        <article th:each="game : ${games}">
+            <p th:text="${game.id}"></p>
+            <p th:text="${game.num1}"></p>
+            <p th:text="${game.num2}"></p>
+            <p th:text="${game.num3}"></p>
+            <p th:text="${game.num4}"></p>
+            <p th:text="${game.num5}"></p>
+            <hr />
+        </article>
+    </div>
+
+    <p><a href="main.html">Vissza a főoldalra</a></p>
+</body>
+</html>

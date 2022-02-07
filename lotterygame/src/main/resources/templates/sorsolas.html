@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html
+    lang="hu"
+    xmlns:th="http://www.thymleaf.org"
+    xmlns="http://www.w3.org/1999/xhtml"
+>
+<head>
+    <meta charset="UTF-8">
+    <title>Lottó program</title>
+</head>
+<body>
+    <h2>Lottó sorsolás</h2>
+    <h3>Üdvözöllek az oldalamon</h3>
+    <div>Kérlek adj meg 5 számot (1-90 között):</div>
+    <form name="lotto_sorsolas" th:action="@{/sors}" th:object="${game}" method="post">
+        <table>
+            <caption>Tippek:</caption>
+            <tr>
+                <th><labe>Szám 1</labe></th>
+                <th><labe>Szám 2</labe></th>
+                <th><labe>Szám 3</labe></th>
+                <th><labe>Szám 4</labe></th>
+                <th><labe>Szám 5</labe></th>
+            </tr>
+            <tr>
+                <td><input type="number" width="2" name="num1" id="num1" th:field="*{num1}" /></td>
+                <td><input type="number" width="2" name="num2" id="num2" th:field="*{num2}" /></td>
+                <td><input type="number" width="2" name="num3" id="num3" th:field="*{num3}" /></td>
+                <td><input type="number" width="2" name="num4" id="num4" th:field="*{num4}" /></td>
+                <td><input type="number" width="2" name="num5" id="num5" th:field="*{num5}" /></td>
+            </tr>
+        </table>
+        <input type="submit" name="registration" value="Küldés" />
+    </form>
+    <hr />
+    <div th:text="${gameResult}"></div>
+    <hr />
+    <p><a href="main.html">Vissza a főoldalra</a></p>
+</body>
+</html>
