@@ -1,0 +1,11 @@
+.funny{
+	font-style: italic;
+	color: green;
+}
+body{
+	background-color: grey;
+}
+table{
+	border-collapse: collapse;
+	border-color: red;
+}
