@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+	<meta charset="UTF-8" />
+	<title>Failed buy</title>
+</head>
+<body>
+	<div>
+		<h2>Failed to buy ticket</h2>
+		<hr/>
+		<div>
+			<p>You don't have enough money to buy this ticket.  :( First fill up you account.</p>	
+			<br />
+			<hr />
+			<br />
+			<a th:href="@{/customers/showCustomerInfo}">Back to Customer's home page</a>
+		</div>
+	</div>
+</body>
+</html>

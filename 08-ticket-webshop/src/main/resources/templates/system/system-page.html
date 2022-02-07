@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+	<meta charset="UTF-8" />
+	<title>Ticket Webshop - Admins</title>
+</head>
+<body>
+	<h3>Admins page</h3>
+	<hr />
+	<div>
+		<span th:text ="${#authentication.getPrincipal().getUsername()}"></span>
+		<form th:action="@{\logout}" method="POST">
+			<input type="submit" value="Logout">
+		</form>
+	</div>
+	<hr />
+	<p><a th:href="@{/}">Back to home</a></p>
+</body>
+</html>

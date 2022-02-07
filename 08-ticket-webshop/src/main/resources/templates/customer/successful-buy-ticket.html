@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+	<meta charset="UTF-8" />
+	<title>Successful buy</title>
+</head>
+<body>
+	<div>
+		<h2>Confirmation of successful buy</h2>
+		<hr/>
+		<div>
+			<p th:text="'You bought successfully ticket with seat-ID:' + ${event} + 
+				' for the ' + ${event} + ' event. Enjoy it! :)'">Successful buy</p>
+			<p th:text="'Remanining money: ' + ${remainingMoney}">remaining money</p>	
+			<br />
+			<hr />
+			<br />
+			<a th:href="@{/customers/showEvents}">Back to Events</a>
+		</div>
+	</div>
+</body>
+</html>

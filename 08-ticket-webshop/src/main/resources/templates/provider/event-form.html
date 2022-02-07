@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+	<meta charset="UTF-8" />
+	<title>Create New Event</title>
+	<meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" 
+    		rel="stylesheet" 
+    		integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" 
+    		crossorigin="anonymous">
+</head>
+<body>
+	<div class="container">
+		<h2>Create New Event</h2>
+		<hr/>
+		<div>
+			<span th:text ="${#authentication.getPrincipal().getUsername()}"></span>
+			<form th:action="@{\logout}" method="POST">
+				<input type="submit" value="Logout">
+			</form>
+		</div>
+		<div>
+			
+			
+			<form action="#" th:action="@{/provider/processEventForm}" th:object="${theEvent}" method="POST">
+				<!-- <input type="hidden" th:field="*{id}" /> -->
+				
+				<input type="hidden" th:field="*{id}" />
+				
+				<label>Event Name: </label>
+				<input type="text" th:field="*{eventName}" placeholder="Event Name (*)" class="form-control mb-4 col-4" />
+				<p th:if="${#fields.hasErrors('eventName')}">Event Name is required!</p>
+				
+				<label>Event Location: </label>
+				<input type="text" th:field="*{eventLocation}" placeholder="Event Location (*)" class="form-control mb-4 col-4" />
+				<p th:if="${#fields.hasErrors('eventLocation')}">Event Location is required!</p>
+				
+				<label>Event Start (expected input: yyyy/MM/dd HH:mm:ss): </label>
+				<input type="text" th:field="*{eventStartString}" placeholder="yyyy/MM/dd HH:mm:ss (*)" class="form-control mb-4 col-4" />
+				<p th:if="${#fields.hasErrors('eventStartString')}">Event Start is required, expected layout: yyyy/MM/dd HH:mm:ss</p>
+				
+				<label>Event Finish (expected input: yyyy/MM/dd HH:mm:ss): </label>
+				<input type="text" th:field="*{eventEndString}" placeholder="yyyy/MM/dd HH:mm:ss (*)" class="form-control mb-4 col-4" />
+				<p th:if="${#fields.hasErrors('eventEndString')}">Event End is required, expected layout: yyyy/MM/dd HH:mm:ss</p>
+				
+				<input type="hidden" th:field="*{providerId}" />
+				
+				<button type="submit" class="btn btn-info col-2">Save Event</button>
+			</form>	
+			
+			
+		</div>
+	</div>
+</body>
+</html>

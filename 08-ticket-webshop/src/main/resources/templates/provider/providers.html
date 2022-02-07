@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+	<meta charset="UTF-8" />
+	<title>Ticket Webshop - For Providers</title>
+	<meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" 
+    		rel="stylesheet" 
+    		integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" 
+    		crossorigin="anonymous">
+</head>
+
+<body>
+	<div class="container">
+	<h3>Providers page</h3>
+	
+		<span th:text ="${#authentication.getPrincipal().getUsername()}"></span>
+		<form th:action="@{\logout}" method="POST">
+			<input type="submit" value="Logout">
+		</form>
+	</div>
+	<hr />
+	<div class="container">
+		<h4>Event Provider's all own events</h4>
+		<p><a th:href="@{/provider/showEventForm}">Create new event</a></p>
+		<br />
+		
+
+		<table class="table table-bordered table-striped">
+			<thead class="thead-dark">
+				<tr>
+					<th>Event Name</th>
+					<th>Event Location</th>
+					<th>Event Start</th>
+					<th>Event End</th>
+					<th>Action</th>
+
+				</tr>
+			</thead>
+			<tbody>
+				<tr th:each="tmpEvent : ${events}">
+					<td th:text="${tmpEvent.eventName}" />
+					<td th:text="${tmpEvent.eventLocation}" />
+					<td th:text="${tmpEvent.eventStartString}" />
+					<td th:text="${tmpEvent.eventEndString}" />
+					<td th:text="${tmpEvent.eventStartString}" />
+					<td>
+						<a th:href="@{/provider/showEventsSeats(eventId=${tmpEvent.id})}">
+							List seat(s)
+						</a>
+					</td>
+				</tr>
+			</tbody>
+		</table>
+		
+		<br />
+		<hr />
+		<br />
+		
+		<h4>Event Provider's all sales details</h4>
+		<table class="table table-bordered table-striped">
+			<thead class="thead-dark">
+				<tr>
+					<th>First Name</th>
+					<th>Last Name</th>
+					<th>Event Name</th>
+					<th>Event Location</th>
+					<th>Event Start</th>
+					<th>Seat Name</th>
+					<th>Reserved</th>
+					<th>Price</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr th:each="tmpUserEvent : ${userevents}">
+					<td th:text="${tmpUserEvent.firstName}" />
+					<td th:text="${tmpUserEvent.lastName}" />
+					<td th:text="${tmpUserEvent.eventName}" />
+					<td th:text="${tmpUserEvent.eventLocation}" />
+					<td th:text="${tmpUserEvent.eventStartString}" />
+					<td th:text="${tmpUserEvent.seatName}" />	
+					<td th:text="${tmpUserEvent.reserved}" />
+					<td th:text="${tmpUserEvent.price}" />
+				</tr>
+			</tbody>
+		</table>
+		
+		<br />
+		<hr />
+		<br />
+		
+		<h4>Total income per event</h4>
+		
+		<br />
+		
+		<table class="table table-bordered table-striped">
+			<thead class="thead-dark">
+				<tr>
+					<th>Event Name</th>
+					<th>Total Revenue</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr th:each="tmpSale : ${sales}">
+					<td th:text="${tmpSale.eventName}" />
+					<td th:text="${tmpSale.price}" />
+				</tr>
+			</tbody>
+		</table>
+		
+	</div>
+	<hr />
+	<p><a th:href="@{/}">Back to home</a></p>
+</body>
+</html>

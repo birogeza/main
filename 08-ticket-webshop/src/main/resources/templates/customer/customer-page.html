@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+	<meta charset="UTF-8" />
+	<title>Ticket Webshop - For Customers</title>
+	<meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" 
+    		rel="stylesheet" 
+    		integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" 
+    		crossorigin="anonymous">
+</head>
+<body>
+	<div class="container">
+		<h3>Customers page</h3>
+	
+		<div>
+			<span th:text ="${#authentication.getPrincipal().getUsername()}"></span>
+			<form th:action="@{/logout}" method="POST">
+				<input type="submit" value="Logout">
+			</form>
+		</div>
+		<hr />
+		
+		 
+		<div th:if="${accountNr == 'empty'}">
+   			<p><a th:href="@{/customers/showAccountRegForm}">Register new bank account</a></p>
+   		</div>	
+		<br />
+		<table class="table table-bordered table-striped">
+			<thead class="thead-dark">
+				<tr>
+					<th>Account Nr</th>
+					<th>Account ammount</th>
+					<th>Currency</th>
+					<th>CVC</th>
+					<th>Action</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr th:each="tmpAcct : ${accounts}">
+					<td th:text="${tmpAcct?.accountNumber}" />
+					<td th:text="${tmpAcct?.accountAmount}" />
+					<td th:text="${tmpAcct?.currency}" />
+					<td th:text="${tmpAcct?.cvcCode}" />
+					<td th:if="${accountNr != 'empty'}">
+						<a th:href="@{/customers/showAccountUpdtForm(accountId=${tmpAcct.id})}"
+							class="btn btn-info btn-sm">
+							Update
+						</a>
+						
+						<a th:href="@{/customers/deleteAcct(accountId=${tmpAcct.id})}"
+							onClick="if(!(confirm('Are you sure, you want to delete this account'))) return false"
+							class="btn btn-danger btn-sm">
+							Delete
+						</a>
+					</td>
+				</tr>
+			</tbody>
+		</table>
+		</div>
+		
+		<br />
+		<hr />
+		<br />
+		
+		<div class="container">
+		<h3>Own tickets</h3>
+		
+		<table class="table table-bordered table-striped">
+			<thead class="thead-dark">
+				<tr>
+					<th>First Name</th>
+					<th>Last Name</th>
+					<th>Event Name</th>
+					<th>Event Location</th>
+					<th>Event Start</th>
+					<th>Seat Name</th>
+					<th>Reserved</th>
+					<th>Price</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr th:each="tmpUserEvent : ${userevents}">
+					<td th:text="${tmpUserEvent.firstName}" />
+					<td th:text="${tmpUserEvent.lastName}" />
+					<td th:text="${tmpUserEvent.eventName}" />
+					<td th:text="${tmpUserEvent.eventLocation}" />
+					<td th:text="${tmpUserEvent.eventStartString}" />
+					<td th:text="${tmpUserEvent.seatName}" />	
+					<td th:text="${tmpUserEvent.reserved}" />
+					<td th:text="${tmpUserEvent.price}" />
+				</tr>
+			</tbody>
+		</table>
+		</div>
+
+		<div>
+			<a th:href="@{/customers/showEvents}">Show Events</a>
+		</div>
+
+	<hr />
+	<p><a th:href="@{/}">Back to home</a></p>
+</body>
+</html>

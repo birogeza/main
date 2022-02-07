@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+	<meta charset="UTF-8" />
+	<!-- Required meta tags -->
+	    <meta charset="utf-8">
+	    <meta name="viewport" content="width=device-width, initial-scale=1">
+	
+	    <!-- Bootstrap CSS -->
+	    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" 
+	    		rel="stylesheet" 
+	    		integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" 
+	    		crossorigin="anonymous">
+	<title>Account Registration</title>
+</head>
+<body>
+	<div>
+		<hr/>
+		<div class="container">
+		<p class="h4 mb-4">Save New Account</p>
+		<form action="#" th:action="@{/customers/saveAccount}" th:object="${account}" method="POST">
+			<!-- <input type="hidden" th:field="*{id}" /> -->
+			
+			<input type="hidden" th:field="*{id}" />
+			
+			<input type="text" th:field="*{accountNumber}" placeholder="Account nr. (*)" class="form-control mb-4 col-4" />
+			<p th:if="${#fields.hasErrors('accountNumber')}">Account number field is required, expected account nr.: xxxxxxxx-xxxxxxxx-xxxxxxxx</p>
+			
+			<input type="text" th:field="*{accountAmount}" placeholder="Ammount (*)" class="form-control mb-4 col-4" />
+			<p th:if="${#fields.hasErrors('accountAmount')}">Invalid account amount, account amount have to be a positive number</p>
+			
+			<input type="text" th:field="*{currency}" placeholder="Currency (*)" class="form-control mb-4 col-4" />
+			<p th:if="${#fields.hasErrors('currency')}">Invalid currency</p>
+			
+			<input type="text" th:field="*{cvcCode}" placeholder="CVC Code (*)" class="form-control mb-4 col-4" />
+			<p th:if="${#fields.hasErrors('cvcCode')}">Invalid CVC code</p>
+			
+			<input type="hidden" th:field="*{userId}" value="*{userId}" />
+			
+			<button type="submit" class="btn btn-info col-2">Save Account</button>
+		</form>	
+		</div>
+		<p><a th:href="@{/customers/showCustomerInfo}">Back to Customer's site</a></p>
+	</div>
+</body>
+</html>
